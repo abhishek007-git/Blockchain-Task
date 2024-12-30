@@ -2,7 +2,7 @@
 let users = [];
 
 // Function to generate a random salt
-function generateSalt(length = 16) {
+function generate_Salt (length = 16) {
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*';
     let salt = '';
     for (let i = 0; i < length; i++) {
@@ -12,7 +12,7 @@ function generateSalt(length = 16) {
 }
 
 // Function to generate a hash with salt
-function generateHash(password, salt) {
+function generate_Hash (password, salt) {
     const combinedString = password + salt;
     let hash = 0;
     for (let i = 0; i < combinedString.length; i++) {
@@ -31,8 +31,8 @@ function signUp(username, password) {
     }
 
     // Generate salt and hash password
-    const salt = generateSalt();
-    const hashedPassword = generateHash(password, salt);
+    const salt = generate_Salt();
+    const hashedPassword = generate_Hash(password, salt);
     
     // Store username, hashed password, and salt
     users.push({
@@ -54,7 +54,7 @@ function login(username, password) {
     }
 
     // Compare hashed passwords using the stored salt
-    const hashedPassword = generateHash(password, user.salt);
+    const hashedPassword = generate_Hash(password, user.salt);
     if (user.password === hashedPassword) {
         return "Login successful!";
     } else {
@@ -92,5 +92,4 @@ function main() {
     }
 }
 
-// Start the program
 main();
